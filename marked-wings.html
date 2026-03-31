@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marked Wings — Serge Borsuk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #c8a96e;
+      --surface: #111010;
+      --surface2: #181716;
+      --text: #e8e4df;
+      --text-dim: rgba(232,228,223,0.5);
+      --text-muted: rgba(232,228,223,0.28);
+      --serif: 'Cormorant', Georgia, serif;
+      --mono: 'Courier Prime', monospace;
+      --garamond: 'EB Garamond', Georgia, serif;
+      --page-pad: 6vw;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--surface); color: var(--text); font-family: var(--mono); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); }
+    img, video { display: block; width: 100%; object-fit: cover; }
+
+    /* BACK */
+    .back-link { position: fixed; top: 1.6rem; left: var(--page-pad); font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.3s; z-index: 100; }
+    .back-link:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero { position: relative; width: 100vw; height: 100vh; background: #000; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+    .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(17,16,16,0.1) 0%, transparent 30%, rgba(17,16,16,0.9) 100%); }
+    .hero__info { position: relative; z-index: 2; padding: var(--page-pad); padding-bottom: calc(var(--page-pad) * 1.8); }
+    .hero__title { font-family: var(--serif); font-size: clamp(3rem, 8vw, 7rem); font-weight: 300; color: #fff; line-height: 0.9; letter-spacing: 0.01em; }
+    .hero__meta { margin-top: 1.2rem; font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+
+    /* CONTENT */
+    .content { padding: 0 var(--page-pad); }
+    .proj-intro { max-width: 640px; }
+    .proj-tags { font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); opacity: 0.75; margin-bottom: 1.8rem; }
+    .proj-body { font-family: var(--garamond); font-size: 1.15rem; line-height: 1.85; color: var(--text-dim); }
+    .proj-body p + p { margin-top: 1.2rem; }
+
+    /* PHOTOS */
+    .fullbleed { width: 100vw; margin-left: calc(-1 * var(--page-pad)); position: relative; }
+    .fullbleed img { width: 100%; height: 88vh; object-fit: cover; display: block; }
+    .contained img { width: 100%; display: block; }
+
+    /* VIMEO */
+    .proj-video { padding: 0 var(--page-pad); }
+    .vimeo-wrap { padding: 56.25% 0 0; position: relative; overflow: hidden; }
+    .vimeo-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
+    /* GAPS */
+    .gap-s { height: 5vh; }
+    .gap-m { height: 12vh; }
+    .gap-l { height: 20vh; }
+    .gap-xl { height: 32vh; }
+
+    /* FOOTER */
+    .footer { padding: 5rem var(--page-pad); border-top: 1px solid rgba(200,169,110,0.08); display: flex; justify-content: space-between; align-items: center; margin-top: 8rem; }
+    .footer__copy { font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.2em; color: var(--text-muted); }
+    .footer__back { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(200,169,110,0.5); text-decoration: none; transition: color 0.3s; }
+    .footer__back:hover { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      :root { --page-pad: 5vw; }
+      .fullbleed img { height: 60vw; }
+      .hero { height: 80vh; }
+      .footer { flex-direction: column; gap: 2rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← All Projects</a>
+
+<section class="hero">
+  <img src="images/Steppe_Eagles_01.png" alt="Marked Wings">
+  <div class="hero__info">
+    <h1 class="hero__title">Marked Wings</h1>
+    <p class="hero__meta">Tamara Pronina &nbsp;·&nbsp; #Documentary #Travel #Nature</p>
+  </div>
+</section>
+
+<div class="gap-l"></div>
+
+<div class="content">
+  <div class="proj-intro">
+    <p class="proj-tags">#Documentary #Travel #Nature</p>
+    <div class="proj-body"><p>An immersive documentary study of India's spiritual heart. From the bustle of the cities to the serenity of the temples.</p></div>
+  </div>
+</div>
+
+<div class="gap-l"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_02.png" alt=""></div>
+<div class="gap-m"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_12.png" alt=""></div>
+<div class="gap-m"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_04.png" alt=""></div>
+<div class="gap-m"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_05.png" alt=""></div>
+<div class="gap-m"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_06.png" alt=""></div>
+<div class="gap-m"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_07.png" alt=""></div>
+<div class="gap-m"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_08.png" alt=""></div>
+<div class="gap-m"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_09.png" alt=""></div>
+<div class="gap-m"></div>   
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_10.png" alt=""></div>
+<div class="gap-m"></div>
+<div class="proj-photo contained"><img src="images/Steppe_Eagles_11.png" alt=""></div>
+<div class="gap-m"></div>
+
+
+<footer class="footer">
+  <span class="footer__copy">© 2025 Serge Borsuk</span>
+  <a href="index.html" class="footer__back">← Back to all projects</a>
+</footer>
+
+</body>
+</html>

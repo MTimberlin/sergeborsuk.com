@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serge Borsuk | Cinematographer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #e9c349;
+      --gold-dim: rgba(133, 133, 133, 0.15);
+      --surface: #121212;
+      --surface2: #1c1b1b;
+      --surface3: #20201f;
+      --text: #e5e2e1;
+      --text-dim: rgba(229,226,225,0.6);
+      --text-muted: rgba(229,226,225,0.35);
+      --serif: 'Cormorant', Georgia, serif;
+      --mono: 'Courier Prime', monospace;
+      --garamond: 'EB Garamond', Georgia, serif;
+      --alt: 'Montserrat', sans-serif;
+      --page-pad: 6vw;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--surface); color: var(--text); font-family: var(--mono); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); }
+    img, video { display: block; width: 100%; object-fit: cover; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.5rem var(--page-pad);
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(19,19,19,0.6);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(172, 172, 172, 0.06);
+    }
+    .nav__logo img { width: 136px; height: auto; filter: brightness(0) invert(1); display: block; }
+    .nav__links { display: flex; gap: 2.5rem; }
+    .nav__links a { font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.3s; }
+    .nav__links a:hover { color: var(--gold); }
+    .nav__burger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav__burger span { display: block; width: 22px; height: 1px; background: var(--text); transition: transform 0.3s, opacity 0.3s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav__mobile { position: fixed; inset: 0; background: var(--surface); z-index: 99; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+    .nav__mobile.open { opacity: 1; pointer-events: all; }
+    .nav__mobile a { font-family: var(--mono); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.3s; }
+    .nav__mobile a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero { position: relative; width: 100vw; height: 100vh; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.6; }
+    .hero::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(19,19,19,0.2) 0%, rgba(19,19,19,0.2) 30%, rgba(19,19,19,0.9) 100%); }
+    .hero__text { position: relative; z-index: 2; text-align: center; }
+    .hero__logo { width: 240px; height: auto; filter: brightness(0) invert(1); margin: 0 auto; }
+    .hero__sub { margin-top: 1.4rem; font-family: var(--serif); font-style: italic; font-size: 1.1rem; letter-spacing: 0.12em; color: rgba(233,195,73,0.7); }
+    .hero__scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+    .hero__scroll span { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+    .hero__scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(233,195,73,0.5), transparent); animation: sline 2.2s ease-in-out infinite; }
+    @keyframes sline { 0%,100%{opacity:.2;transform:scaleY(.4);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+
+    /* GAPS */
+    .gap-s { height: 5vh; }
+    .gap-m { height: 13vh; }
+    .gap-l { height: 22vh; }
+    .gap-xl { height: 34vh; }
+
+    /* LABELS */
+    .section-label { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.55em; text-transform: uppercase; color: var(--gold); opacity: 0.7; text-align: center; }
+
+    /* STILLS */
+    .stills-wrap { position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; width: 100vw; overflow: hidden; cursor: grab; user-select: none; }
+    .stills-wrap:active { cursor: grabbing; }
+    .stills-track { display: flex; transition: transform 0.5s cubic-bezier(.25,.8,.25,1); will-change: transform; }
+    .stills-slide { flex: 0 0 100vw; width: 100vw; }
+    .stills-slide img { width: 100%; height: 88vh; object-fit: cover; display: block; }
+    .stills-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(19,19,19,0.5); border: 1px solid rgba(233,195,73,0.2); cursor: pointer; padding: 0.9rem 1.1rem; z-index: 10; color: rgba(255,255,255,0.55); font-size: 1rem; transition: background 0.3s, color 0.3s; backdrop-filter: blur(8px); }
+    .stills-arrow:hover { background: rgba(233,195,73,0.15); color: var(--gold); }
+    .stills-arrow--prev { left: 1.5rem; }
+    .stills-arrow--next { right: 1.5rem; }
+    .stills-counter { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.35em; color: rgba(255,255,255,0.3); pointer-events: none; }
+
+    /* SECTION HEADER */
+    .section-wrap { padding: 0 var(--page-pad); }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(233,195,73,0.1); }
+    .section-header h2 { font-family: var(--serif); font-size: clamp(5rem, 7vw, 7rem); font-weight: 400; line-height: 1; color: var(--text); letter-spacing: 0.02em; }
+    .section-header__meta { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); opacity: 0.55; }
+
+    /* PROJECT CARDS */
+    .proj-card { display: grid; grid-template-columns: 58% 42%; align-items: center; }
+    .proj-card.reverse { grid-template-columns: 42% 58%; }
+    .proj-card.reverse .proj-card__media { order: 2; }
+    .proj-card.reverse .proj-card__info { order: 1; }
+
+    .proj-card__media { position: relative; overflow: hidden; }
+    .proj-card__media a { display: block; }
+    .proj-card__media img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 1.2s cubic-bezier(.25,.8,.25,1), filter 0.8s; filter: brightness(0.65) saturate(0.7) contrast(1.1); }
+    .proj-card:hover .proj-card__media img { transform: scale(1.05); filter: brightness(0.85) saturate(1) contrast(1); }
+
+    .proj-card__info {
+      background: rgba(155, 155, 155, 0.35);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(233,195,73,0.08);
+      border-radius: 2px;
+      box-shadow: 0 32px 64px rgba(233,195,73,0.05);
+      padding: 3.5rem;
+      position: relative; z-index: 2;
+    }
+    .proj-card:not(.reverse) .proj-card__info { margin-left: -4rem; }
+    .proj-card.reverse .proj-card__info { margin-right: -4rem; }
+
+    .proj-card__type { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0.8; }
+    .proj-card__title { font-family: var(--serif); font-size: clamp(2rem, 2.8vw, 3.2rem); font-weight: 300; line-height: 1; margin-bottom: 0.6rem; color: var(--text); }
+    .proj-card__title a { text-decoration: none; color: inherit; transition: color 0.3s; }
+    .proj-card__title a:hover { color: var(--gold); }
+    .proj-card__author { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--gold); margin-bottom: 1.8rem; display: block; opacity: 0.8; }
+    .proj-card__body { font-family: var(--garamond); font-size: 1.1rem; line-height: 1.75; color: var(--text-dim); margin-bottom: 2.2rem; }
+    .proj-card__link { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: gap 0.3s, opacity 0.3s; opacity: 0.75; }
+    .proj-card__link:hover { gap: 1rem; opacity: 1; }
+    .proj-card__link::after { content: '→'; }
+
+    .card-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(233,195,73,0.12), transparent); margin: 5rem 0; }
+
+    /* FILMOGRAPHY */
+    .filmography-wrap { padding: 0 var(--page-pad); }
+    .log-layout { display: grid; grid-template-columns: 180px 1fr; gap: 5%; }
+    .log-meta-title { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--text); line-height: 1.1; }
+    .log-legend { margin-top: 1.5rem; font-family: var(--mono); font-size: 0.65rem; line-height: 2.4; color: var(--gold); opacity: 0.65; letter-spacing: 0.12em; }
+    .log-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .log-table colgroup col:nth-child(1) { width: 35%; }
+    .log-table colgroup col:nth-child(2) { width: 30%; }
+    .log-table colgroup col:nth-child(3) { width: 25%; }
+    .log-table colgroup col:nth-child(4) { width: 10%; }
+    .log-table th { font-family: var(--serif); font-size: 0.5rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; text-align: left; padding-bottom: 12px; border-bottom: 1px solid rgba(233,195,73,0.15); color: var(--gold); opacity: 0.65; }
+    .log-table th:last-child { text-align: right; }
+    .log-table td {
+      font-family: var(--mono); font-size: 0.65rem; padding: 11px 0;
+      border-bottom: 1px solid rgba(229,226,225,0.05);
+      vertical-align: middle; color: var(--text-dim);
+      overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+      /* только font-size анимируется, позиция не скачет */
+      transition: font-size 0.25s ease, color 0.25s ease, background 0.25s ease;
+    }
+    .log-table td:first-child { color: var(--text); padding-right: 1.5rem; }
+    .log-table td:last-child { text-align: right; color: var(--gold); opacity: 0.55; }
+    .log-table tr.has-link { cursor: pointer; }
+    /* glass hover — только цвет и размер, без padding чтобы не скакало */
+    .log-table tr.has-link:hover td {
+      font-size: 0.78rem;
+      color: var(--text);
+      background: rgba(53,53,53,0.45);
+    }
+    .log-table tr.has-link:hover td:last-child { color: var(--gold); opacity: 1; }
+
+    /* ABOUT */
+    .about-section { padding: 8rem var(--page-pad); background: var(--surface2); border-top: 1px solid rgba(233,195,73,0.07); display: grid; grid-template-columns: 1fr 1.5fr; gap: 8%; align-items: center; }
+    .about-photo { position: relative; }
+    .about-photo::before { content: ''; position: absolute; top: -1.5rem; left: -1.5rem; right: 1.5rem; bottom: 1.5rem; border-left: 1px solid rgba(233,195,73,0.15); border-top: 1px solid rgba(233,195,73,0.15); pointer-events: none; }
+    .about-photo::after { content: ''; position: absolute; top: 1.5rem; left: 1.5rem; right: -1.5rem; bottom: -1.5rem; border-right: 1px solid rgba(233,195,73,0.15); border-bottom: 1px solid rgba(233,195,73,0.15); pointer-events: none; }
+    .about-photo img { width: 100%; filter: grayscale(20%) brightness(0.8) contrast(1.1); transition: filter 0.8s; position: relative; z-index: 1; }
+    .about-photo:hover img { filter: grayscale(0%) brightness(0.95); }
+    .about-eyebrow { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: block; opacity: 0.8; }
+    .about-name { font-family: var(--serif); font-size: clamp(3rem, 4.5vw, 5rem); font-weight: 300; line-height: 0.92; margin-bottom: 2rem; color: var(--text); font-style: italic; }
+    .about-body { font-family: var(--garamond); font-size: 1.15rem; line-height: 1.85; color: var(--text-dim); }
+    .about-body p + p { margin-top: 1.2rem; }
+
+    /* FOOTER */
+    .footer { padding: 4.5rem var(--page-pad); border-top: 1px solid rgba(233,195,73,0.08); display: flex; justify-content: space-between; align-items: center; }
+    .footer__copy { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(229,226,225,0.5); }
+    .footer__links { display: flex; gap: 2.5rem; }
+    .footer__links a { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(229,226,225,0.5); text-decoration: none; transition: color 0.3s; }
+    .footer__links a:hover { color: var(--gold); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      :root { --page-pad: 5vw; }
+      .nav__links { display: none; }
+      .nav__burger { display: flex; }
+      .proj-card, .proj-card.reverse { grid-template-columns: 1fr; }
+      .proj-card__info { margin: 0 !important; padding: 2rem 1.5rem; backdrop-filter: none; background: rgba(40,40,40,0.95); }
+      .proj-card__media img { aspect-ratio: 4/3; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; margin-bottom: 3rem; }
+      .log-layout { grid-template-columns: 1fr; }
+      .about-section { grid-template-columns: 1fr; gap: 3rem; padding: 4rem var(--page-pad); }
+      .about-photo::before, .about-photo::after { display: none; }
+      .footer { flex-direction: column; gap: 2rem; text-align: center; }
+      .stills-slide img { height: 56vw; }
+      .gap-m { height: 8vh; }
+      .gap-l { height: 12vh; }
+      .gap-xl { height: 18vh; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav__logo"><img src="images/logo.png" alt="Serge Borsuk"></a>
+  <div class="nav__links">
+    <a href="#stills">Stills</a>
+    <a href="#films">Films</a>
+    <a href="#commercials">Commercials</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contacts</a>
+  </div>
+  <button class="nav__burger" id="burgerBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav__mobile" id="mobileMenu">
+  <a href="#stills" onclick="closeMobile()">Stills</a>
+  <a href="#films" onclick="closeMobile()">Films</a>
+  <a href="#commercials" onclick="closeMobile()">Commercials</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#contact" onclick="closeMobile()">Contacts</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="videos/loop_desktop_3.mov" type="video/mp4">
+  </video>
+  <div class="hero__text">
+    <img class="hero__logo" src="images/logo_2.png" alt="Serge Borsuk">
+  </div>
+  <div class="hero__scroll">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- STILLS -->
+<div class="gap-l"></div>
+<div class="section-label" id="stills">Stills</div>
+<div class="gap-s"></div>
+
+<div class="stills-wrap" id="stillsWrap">
+  <div class="stills-track" id="stillsTrack">
+    <div class="stills-slide"><img src="images/Still_01.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_02.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_03.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_04.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_05.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_06.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_07.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_08.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_09.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_10.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_11.png" alt=""></div>
+    <div class="stills-slide"><img src="images/Still_12.png" alt=""></div>
+  </div>
+  <button class="stills-arrow stills-arrow--prev" id="stillsPrev">&#8592;</button>
+  <button class="stills-arrow stills-arrow--next" id="stillsNext">&#8594;</button>
+  <span class="stills-counter"><span id="stillsCur">1</span> / 12</span>
+</div>
+
+<!-- FILMS -->
+<div class="gap-xl"></div>
+<div class="section-label" id="films">Films</div>
+<div class="gap-m"></div>
+<div class="section-wrap">
+
+  <div class="proj-card">
+    <div class="proj-card__media"><a href="after-the-city.html"><img src="images/Architector_02.png" alt="After The City"></a></div>
+    <div class="proj-card__info">
+      <span class="proj-card__type">#Architecture #Documentary</span>
+      <h3 class="proj-card__title"><a href="after-the-city.html">After The City</a></h3>
+      <span class="proj-card__author">By Igor Makarov</span>
+      <p class="proj-card__body">Teaser of a four-part documentary series. An intimate look into the creative process and the philosophy of space of Saint Petersburg.</p>
+      <a href="after-the-city.html" class="proj-card__link">Explore Project</a>
+    </div>
+  </div>
+
+  <div class="card-divider"></div>
+
+  <div class="proj-card reverse">
+    <div class="proj-card__info">
+      <span class="proj-card__type">#Documentary #Portrait</span>
+      <h3 class="proj-card__title"><a href="girl-in-the-sands.html">The Girl In The Sands</a></h3>
+      <span class="proj-card__author">By Serge Borsuk</span>
+      <p class="proj-card__body">A minimalist documentary shot in Kyrgyzstan on the southern shore of Lake Issyk-Kul. A sandy area scorched by the sun and blown by winds. There is only one house standing there.</p>
+      <a href="girl-in-the-sands.html" class="proj-card__link">Explore Project</a>
+    </div>
+    <div class="proj-card__media"><a href="girl-in-the-sands.html"><img src="images/gits_05.png" alt="Girl In The Sands"></a></div>
+  </div>
+
+  <div class="card-divider"></div>
+
+  <div class="proj-card">
+    <div class="proj-card__media"><a href="marked-wings.html"><img src="images/Steppe_Eagles_01.png" alt="Marked Wings"></a></div>
+    <div class="proj-card__info">
+      <span class="proj-card__type">#Documentary #Travel #Nature</span>
+      <h3 class="proj-card__title"><a href="marked-wings.html">Marked Wings</a></h3>
+      <span class="proj-card__author">By Tamara Pronina</span>
+      <p class="proj-card__body">An immersive documentary study of India's spiritual heart. From the bustle of the cities to the serenity of the temples.</p>
+      <a href="marked-wings.html" class="proj-card__link">Explore Project</a>
+    </div>
+  </div>
+
+  <div class="card-divider"></div>
+
+  <div class="proj-card reverse">
+    <div class="proj-card__info">
+      <span class="proj-card__type">#Feature #Full-Length</span>
+      <h3 class="proj-card__title"><a href="bird-of-passage.html">Bird of Passage</a></h3>
+      <span class="proj-card__author">By Ivan Kurbakov</span>
+      <p class="proj-card__body">A young actress travels through Georgia in search of a better life — from the noisy feasts of Tbilisi to the silence of Tskaltubo's overgrown ruins. On an empty stage, she performs a play with ghosts.</p>
+      <a href="bird-of-passage.html" class="proj-card__link">Explore Project</a>
+    </div>
+    <div class="proj-card__media"><a href="bird-of-passage.html"><img src="images/Bird_of_passage_01.png" alt="Bird of Passage"></a></div>
+  </div>
+</div>
+
+<!-- COMMERCIALS -->
+<div class="gap-xl"></div>
+<div class="section-label" id="commercials">Commercials</div>
+<div class="gap-m"></div>
+<div class="section-wrap">
+
+  <div class="proj-card">
+    <div class="proj-card__media"><a href="buenos-aires-3d.html"><img src="images/Buenos_Aires_3D_01.png" alt="Buenos Aires 3D"></a></div>
+    <div class="proj-card__info">
+      <span class="proj-card__type">#Documentary #Commercial</span>
+      <h3 class="proj-card__title"><a href="buenos-aires-3d.html">Buenos Aires 3D</a></h3>
+      <span class="proj-card__author">By Leo Balanev</span>
+      <p class="proj-card__body">Artistic visualization of 3D scanning historical buildings and monuments for the City Government of Buenos Aires. Digital archaeology blending surgical precision with the soulful atmosphere of the old city.</p>
+      <a href="buenos-aires-3d.html" class="proj-card__link">Explore Project</a>
+    </div>
+  </div>
+
+  <div class="card-divider"></div>
+
+  <div class="proj-card reverse">
+    <div class="proj-card__info">
+      <span class="proj-card__type">#Travel #Commercial</span>
+      <h3 class="proj-card__title"><a href="africa.html">Africa</a></h3>
+      <span class="proj-card__author">By Leo Balanev</span>
+      <p class="proj-card__body">A visual journey through the diverse landscapes and vibrant cultures of the African continent. Captured with a focus on natural lighting and authentic moments — resilience and beauty.</p>
+      <a href="africa.html" class="proj-card__link">Explore Project</a>
+    </div>
+    <div class="proj-card__media"><a href="africa.html"><img src="images/Africa-01.png" alt="Africa"></a></div>
+  </div>
+</div>
+
+<!-- FILMOGRAPHY -->
+<div class="gap-xl"></div>
+<div class="section-label">MY OTHER PROJECTS</div>
+<div class="filmography-wrap">
+  <div class="gap-m"></div>
+  <div class="log-layout">
+    <div>
+      <p class="log-meta-title">FILMO-<br>GRAPHY</p>
+      <div class="log-legend">
+        <p>(D) Documentary</p>
+        <p>(C) Commercial</p>
+        <p>(F) Fiction</p>
+      </div>
+    </div>
+    <table class="log-table">
+      <colgroup>
+        <col style="width:35%">
+        <col style="width:30%">
+        <col style="width:25%">
+        <col style="width:10%">
+      </colgroup>
+      <thead><tr><th>Project</th><th>Directed by</th><th>Role</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr class="has-link"><td><a href="https://www.imdb.com/title/tt26083700/" target="_blank" style="text-decoration:none;color:inherit;">Queendom, 98 min</a></td><td>Agnia Goldanova</td><td>DoP of episode</td><td>(D)</td></tr>
+        <tr class="has-link"><td><a href="https://message2man.com/en/films/pereletnaya-ptitsa-bird-of-passage/" target="_blank" style="text-decoration:none;color:inherit;">Bird of Passage, 68 min</a></td><td>Ivan Kurbakov</td><td>DoP</td><td>(F)</td></tr>
+        <tr class="has-link"><td><a href="https://www.imdb.com/title/tt39299844/" target="_blank" style="text-decoration:none;color:inherit;">Emelianenko, 91 min</a></td><td>Valeriya Gay Germanika</td><td>DoP</td><td>(D)</td></tr>
+        <tr class="has-link"><td><a href="https://www.imdb.com/title/tt15249292/" target="_blank" style="text-decoration:none;color:inherit;">GES-2, 74 min</a></td><td>Nastia Korkia</td><td>DoP of episode</td><td>(D)</td></tr>
+        <tr class="has-link"><td><a href="https://okko.tv/serial/skatertju-doroga" target="_blank" style="text-decoration:none;color:inherit;">Good Riddance, 100 min</a></td><td>Igor Makarov</td><td>DoP</td><td>(D)(C)</td></tr>
+        <tr class="has-link"><td><a href="https://vimeo.com/315190030" target="_blank" style="text-decoration:none;color:inherit;">Kolskiy Film, 180 min</a></td><td>Alexander Rastorhuev</td><td>DoP of episode</td><td>(D)(C)</td></tr>
+        <tr class="has-link"><td><a href="https://artdoc.media/movie/winged_bulls_2019_70" target="_blank" style="text-decoration:none;color:inherit;">Winged Bulls, 70 min</a></td><td>Igor Makarov</td><td>DoP</td><td>(D)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="gap-xl"></div>
+<section class="about-section" id="about">
+  <div class="about-photo"><img src="images/About.png" alt="Serge Borsuk"></div>
+  <div>
+    <h2 class="about-name">Serge<br>Borsuk</h2>
+    <div class="about-body">
+      <p>Cinematographer and documentary filmmaker based in Buenos Aires, Argentina.</p>
+      <p>Documentary and auteur cinema.</p> 
+      <p>Observation, natural light, real time.</p>
+      <p>Focus on social, political, and cultural subjects. Interest in remote locations and complex stories.</p>
+      <p>Available worldwide.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <span class="footer__copy">© 2025 Serge Borsuk</span>
+  <div class="footer__links">
+    <a href="https://vimeo.com/user12380587" target="_blank">Vimeo</a>
+    <a href="https://www.instagram.com/serge.borsuk/" target="_blank">Instagram</a>
+    <a href="/cdn-cgi/l/email-protection#8ffceafde8eaa1ede0fdfcfae4cfe8e2eee6e3a1ece0e2">Email</a>
+    <a href="https://www.imdb.com/name/nm9173717/" target="_blank">IMDb</a>
+  </div>
+</footer>
+
+<script>
+  /* Burger */
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMobile() {
+    burger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) closeMobile(); });
+
+  /* Stills gallery */
+  (function() {
+    const wrap = document.getElementById('stillsWrap');
+    const track = document.getElementById('stillsTrack');
+    const curEl = document.getElementById('stillsCur');
+    const total = 12;
+    let cur = 0;
+    function go(n) {
+      cur = (n + total) % total;
+      track.style.transform = `translateX(-${cur * 100}vw)`;
+      curEl.textContent = cur + 1;
+    }
+    document.getElementById('stillsPrev').addEventListener('click', () => go(cur - 1));
+    document.getElementById('stillsNext').addEventListener('click', () => go(cur + 1));
+    let startX = 0;
+    wrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx) > 40) go(dx < 0 ? cur + 1 : cur - 1); });
+    let down = false, mx = 0;
+    wrap.addEventListener('mousedown', e => { down = true; mx = e.clientX; });
+    wrap.addEventListener('mouseup', e => { if (!down) return; down = false; const dx = e.clientX - mx; if (Math.abs(dx) > 40) go(dx < 0 ? cur + 1 : cur - 1); });
+    wrap.addEventListener('mouseleave', () => { down = false; });
+    document.addEventListener('keydown', e => {
+      const r = wrap.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        if (e.key === 'ArrowLeft') go(cur - 1);
+        if (e.key === 'ArrowRight') go(cur + 1);
+      }
+    });
+  })();
+
+  /* Filmography row click — works on mobile too via touch */
+  document.querySelectorAll('.log-table tr.has-link').forEach(row => {
+    const link = row.querySelector('a');
+    if (!link) return;
+    row.addEventListener('click', e => {
+      if (e.target.tagName === 'A') return;
+      window.open(link.href, '_blank');
+    });
+    /* mobile tap */
+    row.addEventListener('touchend', e => {
+      if (e.target.tagName === 'A') return;
+      e.preventDefault();
+      window.open(link.href, '_blank');
+    });
+  });
+</script>
+</body>
+</html>
+
