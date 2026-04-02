@@ -27,21 +27,21 @@
     img, video { display: block; width: 100%; object-fit: cover; }
 
     /* BACK */
-    .back-link { position: fixed; top: 1.6rem; left: var(--page-pad); font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.3s; z-index: 100; }
+    .back-link { position: fixed; top: 1.6rem; left: var(--page-pad); font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.3s; z-index: 100; }
     .back-link:hover { color: var(--gold); }
 
     /* HERO */
     .hero { position: relative; width: 100vw; height: 100vh; background: #000; overflow: hidden; display: flex; align-items: flex-end; }
     .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-    .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(17,16,16,0.1) 0%, transparent 30%, rgba(17,16,16,0.9) 100%); }
+    .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(17,16,16,0.1) 0%, transparent 80%, rgba(17,16,16,0.9) 100%); }
     .hero__info { position: relative; z-index: 2; padding: var(--page-pad); padding-bottom: calc(var(--page-pad) * 1.8); }
     .hero__title { font-family: var(--serif); font-size: clamp(3rem, 8vw, 7rem); font-weight: 300; color: #fff; line-height: 0.9; letter-spacing: 0.01em; }
-    .hero__meta { margin-top: 1.2rem; font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+    .hero__meta { margin-top: 1.2rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
 
     /* CONTENT */
     .content { padding: 0 var(--page-pad); }
     .proj-intro { max-width: 640px; }
-    .proj-tags { font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); opacity: 0.75; margin-bottom: 1.8rem; }
+    .proj-tags { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); opacity: 0.75; margin-bottom: 1.8rem; }
     .proj-body { font-family: var(--garamond); font-size: 1.15rem; line-height: 1.85; color: var(--text-dim); }
     .proj-body p + p { margin-top: 1.2rem; }
 
@@ -63,8 +63,8 @@
 
     /* FOOTER */
     .footer { padding: 5rem var(--page-pad); border-top: 1px solid rgba(200,169,110,0.08); display: flex; justify-content: space-between; align-items: center; margin-top: 8rem; }
-    .footer__copy { font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.2em; color: var(--text-muted); }
-    .footer__back { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(200,169,110,0.5); text-decoration: none; transition: color 0.3s; }
+    .footer__back { font-family: var(--mono); font-size: 1rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(200,169,110,0.5); text-decoration: none; transition: color 0.3s; }
+    .footer__copy { font-family: var(--mono); font-size: 0.88rem; letter-spacing: 0.2em; color: var(--text-muted); }
     .footer__back:hover { color: var(--gold); }
 
     @media (max-width: 768px) {
@@ -83,7 +83,7 @@
   <img src="images/Africa-01.png" alt="Africa">
   <div class="hero__info">
     <h1 class="hero__title">Africa</h1>
-    <p class="hero__meta">Leo Balanev &nbsp;·&nbsp; #Travel #Commercial</p>
+    <p class="hero__meta">Directed By Leo Balanev </p>
   </div>
 </section>
 
@@ -92,7 +92,7 @@
 <div class="content">
   <div class="proj-intro">
     <p class="proj-tags">#Travel #Commercial</p>
-    <div class="proj-body"><p>A visual journey through the diverse landscapes and vibrant cultures of the African continent. This project explores the intersection of nature and humanity.</p><p>Captured with a focus on natural lighting and authentic moments, these frames tell a story of resilience and beauty.</p></div>
+    <div class="proj-body"><p>The team at Burn is trying to cut down deforestation in Africa by building simple, energy-efficient stoves people can use every day.</p></div>
   </div>
 </div>
 
@@ -119,10 +119,9 @@
 <div class="gap-m"></div>
 <div class="proj-photo contained"><img src="images/Africa-12.png" alt=""></div>
 
-
 <footer class="footer">
-  <span class="footer__copy">© 2025 Serge Borsuk</span>
   <a href="index.html" class="footer__back">← Back to all projects</a>
+  <span class="footer__copy">© 2025 Serge Borsuk</span>
 </footer>
 
 </body>

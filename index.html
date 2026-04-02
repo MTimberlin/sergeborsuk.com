@@ -33,13 +33,22 @@
     img, video { display: block; width: 100%; object-fit: cover; }
 
     /* NAV */
+      
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.5rem var(--page-pad);
-      display: flex; justify-content: space-between; align-items: center;
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      z-index: 100;
+      padding: 1rem var(--page-pad);
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
       background: rgba(19,19,19,0.6);
       backdrop-filter: blur(24px);
       border-bottom: 1px solid rgba(172, 172, 172, 0.06);
+      transform: translateY(-100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .nav__logo img { width: 136px; height: auto; filter: brightness(0) invert(1); display: block; }
     .nav__links { display: flex; gap: 2.5rem; }
@@ -133,7 +142,7 @@
     .proj-card__title { font-family: var(--serif); font-size: clamp(2rem, 2.8vw, 3.2rem); font-weight: 300; line-height: 1; margin-bottom: 0.6rem; color: var(--text); }
     .proj-card__title a { text-decoration: none; color: inherit; transition: color 0.3s; }
     .proj-card__title a:hover { color: var(--gold); }
-    .proj-card__author { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--gold); margin-bottom: 1.8rem; display: block; opacity: 0.8; }
+    .proj-card__author { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--gold); margin-bottom: 1.8rem; display: block; opacity: 0.8; }
     .proj-card__body { font-family: var(--garamond); font-size: 1.1rem; line-height: 1.75; color: var(--text-dim); margin-bottom: 2.2rem; }
     .proj-card__link { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: gap 0.3s, opacity 0.3s; opacity: 0.75; }
     .proj-card__link:hover { gap: 1rem; opacity: 1; }
@@ -142,7 +151,11 @@
     .card-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(233,195,73,0.12), transparent); margin: 5rem 0; }
 
     /* FILMOGRAPHY */
-    .filmography-wrap { padding: 0 var(--page-pad); }
+    .filmography-wrap { 
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--page-pad);
+    }
     .log-layout { display: grid; grid-template-columns: 180px 1fr; gap: 5%; }
     .log-meta-title { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--text); line-height: 1.1; }
     .log-legend { margin-top: 1.5rem; font-family: var(--mono); font-size: 0.65rem; line-height: 2.4; color: var(--gold); opacity: 0.65; letter-spacing: 0.12em; }
@@ -185,12 +198,35 @@
     .about-body p + p { margin-top: 1.2rem; }
 
     /* FOOTER */
-    .footer { padding: 4.5rem var(--page-pad); border-top: 1px solid rgba(233,195,73,0.08); display: flex; justify-content: space-between; align-items: center; }
-    .footer__copy { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(229,226,225,0.5); }
-    .footer__links { display: flex; gap: 2.5rem; }
-    .footer__links a {
+    .footer { 
+  padding: 4.5rem var(--page-pad); 
+  border-top: 1px solid rgba(233,195,73,0.08); 
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  gap: 2rem;
+}
+
+.footer__copy { 
+  font-family: var(--mono); 
+  font-size: 0.5rem;
+  letter-spacing: 0.2em; 
+  text-transform: uppercase; 
+  color: rgba(229,226,225,0.5);
+  margin-top: 2rem;  /* добавляет отступ сверху */
+}
+
+.footer__links { 
+  display: flex; 
+  flex-direction: column;
+  gap: 1.5rem;  /* увеличен отступ между ссылками */
+  align-items: center; 
+}
+
+.footer__links a {
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: 0.9rem;  /* было 0.6rem */
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--gold);
@@ -204,13 +240,38 @@
 }
 
     /* MOBILE */
-    @media (max-width: 768px) {
+      @media (max-width: 768px) {
       :root { --page-pad: 5vw; }
       .nav__links { display: none; }
       .nav__burger { display: flex; }
-      .proj-card, .proj-card.reverse { grid-template-columns: 1fr; }
+      .filmography-wrap { 
+        padding: 0 var(--page-pad);
+      }
+      .proj-card, 
+      .proj-card.reverse { 
+        grid-template-columns: 1fr;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
       .proj-card__info { margin: 0 !important; padding: 2rem 1.5rem; backdrop-filter: none; background: rgba(40,40,40,0.95); }
-      .proj-card__media img { aspect-ratio: 4/3; }
+      .proj-card .proj-card__media,
+      .proj-card.reverse .proj-card__media {
+        order: 1;
+      }
+
+      .proj-card .proj-card__info,
+      .proj-card.reverse .proj-card__info {
+        order: 2;
+        margin: 0 !important; 
+        padding: 2rem var(--page-pad);
+        background: rgba(40,40,40,0.92);
+        backdrop-filter: blur(12px);
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+      }
       .section-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; margin-bottom: 3rem; }
       .log-layout { grid-template-columns: 1fr; }
       .about-section { grid-template-columns: 1fr; gap: 3rem; padding: 4rem var(--page-pad); }
@@ -338,11 +399,12 @@
   <div class="proj-card">
     <div class="proj-card__media"><a href="after-the-city.html"><img src="images/Architector_02.png" alt="After The City"></a></div>
     <div class="proj-card__info">
-      <span class="proj-card__type">#Architecture #Documentary</span>
+     
       <h3 class="proj-card__title"><a href="after-the-city.html">After The City</a></h3>
       <span class="proj-card__author">By Igor Makarov</span>
-      <p class="proj-card__body">Teaser of a four-part documentary series. An intimate look into the creative process and the philosophy of space of Saint Petersburg.</p>
-      <a href="after-the-city.html" class="proj-card__link">Explore Project</a>
+      <p class="proj-card__body">A four-part documentary series about architecture in Saint Petersburg. You see the city from a few different angles: through architect Sergey Tchoban, a family living in a small apartment in a modern building, people from the historic center, and folks living on a houseboat.</p>
+       <span class="proj-card__type">#Architecture #Documentary</span>
+      <!-- <a href="after-the-city.html" class="proj-card__link">Explore Project</a> -->
     </div>
   </div>
 
@@ -350,11 +412,11 @@
 
   <div class="proj-card reverse">
     <div class="proj-card__info">
-      <span class="proj-card__type">#Documentary #Portrait</span>
       <h3 class="proj-card__title"><a href="girl-in-the-sands.html">The Girl In The Sands</a></h3>
       <span class="proj-card__author">By Serge Borsuk</span>
       <p class="proj-card__body">A minimalist documentary shot in Kyrgyzstan on the southern shore of Lake Issyk-Kul. A sandy area scorched by the sun and blown by winds. There is only one house standing there.</p>
-      <a href="girl-in-the-sands.html" class="proj-card__link">Explore Project</a>
+      <span class="proj-card__type">#Documentary #Portrait</span>
+      <!--<a href="girl-in-the-sands.html" class="proj-card__link">Explore Project</a>-->
     </div>
     <div class="proj-card__media"><a href="girl-in-the-sands.html"><img src="images/Gits_05.png" alt="Girl In The Sands"></a></div>
   </div>
@@ -364,11 +426,11 @@
   <div class="proj-card">
     <div class="proj-card__media"><a href="marked-wings.html"><img src="images/Steppe_Eagles_01.png" alt="Marked Wings"></a></div>
     <div class="proj-card__info">
-      <span class="proj-card__type">#Documentary #Travel #Nature</span>
       <h3 class="proj-card__title"><a href="marked-wings.html">Marked Wings</a></h3>
       <span class="proj-card__author">By Tamara Pronina</span>
-      <p class="proj-card__body">An immersive documentary study of India's spiritual heart. From the bustle of the cities to the serenity of the temples.</p>
-      <a href="marked-wings.html" class="proj-card__link">Explore Project</a>
+      <p class="proj-card__body">Ornithologist Igor Koryakin and his family go to India to figure out why steppe eagles are dying. It’s about how human activity is affecting these rare birds of prey.</p>
+      <span class="proj-card__type">#Documentary #Travel</span>
+      <!--<a href="marked-wings.html" class="proj-card__link">Explore Project</a>-->
     </div>
   </div>
 
@@ -376,11 +438,11 @@
 
   <div class="proj-card reverse">
     <div class="proj-card__info">
-      <span class="proj-card__type">#Feature #Full-Length</span>
       <h3 class="proj-card__title"><a href="bird-of-passage.html">Bird of Passage</a></h3>
       <span class="proj-card__author">By Ivan Kurbakov</span>
       <p class="proj-card__body">A young actress travels through Georgia in search of a better life — from the noisy feasts of Tbilisi to the silence of Tskaltubo's overgrown ruins. On an empty stage, she performs a play with ghosts.</p>
-      <a href="bird-of-passage.html" class="proj-card__link">Explore Project</a>
+      <!-- <a href="bird-of-passage.html" class="proj-card__link">Explore Project</a> -->
+      <span class="proj-card__type">#Feature #Full-Length</span>
     </div>
     <div class="proj-card__media"><a href="bird-of-passage.html"><img src="images/Bird_of_passage_01.png" alt="Bird of Passage"></a></div>
   </div>
@@ -409,11 +471,11 @@
       </colgroup>
       <thead><tr><th>Project</th><th>Directed by</th><th>Role</th><th>Type</th></tr></thead>
       <tbody>
+        <tr class="has-link"><td><a href="https://okko.tv/serial/skatertju-doroga" target="_blank" style="text-decoration:none;color:inherit;">Good Riddance, 100 min</a></td><td>Igor Makarov</td><td>DoP</td><td>(D)(C)</td></tr>
         <tr class="has-link"><td><a href="https://www.imdb.com/title/tt26083700/" target="_blank" style="text-decoration:none;color:inherit;">Queendom, 98 min</a></td><td>Agnia Goldanova</td><td>DoP of episode</td><td>(D)</td></tr>
         <tr class="has-link"><td><a href="https://message2man.com/en/films/pereletnaya-ptitsa-bird-of-passage/" target="_blank" style="text-decoration:none;color:inherit;">Bird of Passage, 68 min</a></td><td>Ivan Kurbakov</td><td>DoP</td><td>(F)</td></tr>
         <tr class="has-link"><td><a href="https://www.imdb.com/title/tt39299844/" target="_blank" style="text-decoration:none;color:inherit;">Emelianenko, 91 min</a></td><td>Valeriya Gay Germanika</td><td>DoP</td><td>(D)</td></tr>
         <tr class="has-link"><td><a href="https://www.imdb.com/title/tt15249292/" target="_blank" style="text-decoration:none;color:inherit;">GES-2, 74 min</a></td><td>Nastia Korkia</td><td>DoP of episode</td><td>(D)</td></tr>
-        <tr class="has-link"><td><a href="https://okko.tv/serial/skatertju-doroga" target="_blank" style="text-decoration:none;color:inherit;">Good Riddance, 100 min</a></td><td>Igor Makarov</td><td>DoP</td><td>(D)(C)</td></tr>
         <tr class="has-link"><td><a href="https://vimeo.com/315190030" target="_blank" style="text-decoration:none;color:inherit;">Kolskiy Film, 180 min</a></td><td>Alexander Rastorhuev</td><td>DoP of episode</td><td>(D)(C)</td></tr>
         <tr class="has-link"><td><a href="https://artdoc.media/movie/winged_bulls_2019_70" target="_blank" style="text-decoration:none;color:inherit;">Winged Bulls, 70 min</a></td><td>Igor Makarov</td><td>DoP</td><td>(D)</td></tr>
       </tbody>
@@ -430,11 +492,11 @@
   <div class="proj-card">
     <div class="proj-card__media"><a href="buenos-aires-3d.html"><img src="images/Buenos_Aires_3D_01.png" alt="Buenos Aires 3D"></a></div>
     <div class="proj-card__info">
-      <span class="proj-card__type">#Documentary #Commercial</span>
       <h3 class="proj-card__title"><a href="buenos-aires-3d.html">Buenos Aires 3D</a></h3>
       <span class="proj-card__author">By Leo Balanev</span>
-      <p class="proj-card__body">Artistic visualization of 3D scanning historical buildings and monuments for the City Government of Buenos Aires. Digital archaeology blending surgical precision with the soulful atmosphere of the old city.</p>
-      <a href="buenos-aires-3d.html" class="proj-card__link">Explore Project</a>
+      <p class="proj-card__body">It’s a creative take on 3D scanning historic buildings and monuments for the Buenos Aires city government. Kind of like digital archaeology — very precise, but still keeping the old city’s vibe.</p>
+     <span class="proj-card__type">#Documentary #Commercial</span> 
+      <!--<a href="buenos-aires-3d.html" class="proj-card__link">Explore Project</a>-->
     </div>
   </div>
 
@@ -442,11 +504,11 @@
 
   <div class="proj-card reverse">
     <div class="proj-card__info">
-      <span class="proj-card__type">#Travel #Commercial</span>
       <h3 class="proj-card__title"><a href="africa.html">Africa</a></h3>
       <span class="proj-card__author">By Leo Balanev</span>
-      <p class="proj-card__body">A visual journey through the diverse landscapes and vibrant cultures of the African continent. Captured with a focus on natural lighting and authentic moments — resilience and beauty.</p>
-      <a href="africa.html" class="proj-card__link">Explore Project</a>
+      <p class="proj-card__body">The team at Burn is trying to cut down deforestation in Africa by building simple, energy-efficient stoves people can use every day.</p>
+      <!--<a href="africa.html" class="proj-card__link">Explore Project</a>-->
+      <span class="proj-card__type">#Travel #Commercial</span>
     </div>
     <div class="proj-card__media"><a href="africa.html"><img src="images/Africa-01.png" alt="Africa"></a></div>
   </div>
@@ -462,9 +524,10 @@
     <h2 class="about-name">Serge<br>Borsuk</h2>
     <div class="about-body">
       <p>Cinematographer and documentary filmmaker based in Buenos Aires, Argentina.</p>
-      <p>Documentary and auteur cinema.</p> 
-      <p>Observation, natural light, real time.</p>
-      <p>Focus on social, political, and cultural subjects. Interest in remote locations and complex stories.</p>
+      <p>Graduated from the Belarusian State University, Faculty of Journalism in Minsk. Studied cinematography at the Moscow School of New Cinema.</p> 
+      <p>Worked on projects in Argentina, Mexico, the US, Thailand, India, Kenya, Malawi, Germany, Georgia, Turkey, Russia, and Belarus.</p>
+      <p>Solid experience working on expeditions in remote, hard-to-reach places.</p>
+      <p>Naturally gravitate toward raw, real-life human stories. Trying to capture reality as truthfully as possible, without interrupting the natural flow of events.</p>
       <p>Available worldwide.</p>
     </div>
   </div>
@@ -472,13 +535,14 @@
 
 <!-- FOOTER -->
 <footer class="footer" id="contact">
-  <span class="footer__copy">© 2025 Serge Borsuk</span>
   <div class="footer__links">
     <a href="https://t.me/M_Timberlin" target="_blank">Telegram</a>
     <a href="https://www.instagram.com/serge.borsuk/" target="_blank">Instagram</a>
     <a href="mailto:serge.borsuk@gmail.com?subject=Inquiry%20from%20portfolio">Email</a>
     <a href="https://vimeo.com/user12380587" target="_blank">Vimeo</a>
     <a href="https://www.imdb.com/name/nm9173717/" target="_blank">IMDb</a>
+
+    <span class="footer__copy">© 2025 Serge Borsuk</span>
     
   </div>
 </footer>
