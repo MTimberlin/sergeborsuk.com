@@ -71,12 +71,102 @@
     .footer__copy { font-family: var(--mono); font-size: 0.88rem; letter-spacing: 0.2em; color: var(--text-muted); }
     .footer__back:hover { color: var(--gold); }
 
+    /* === Стили для таблицы Crew (аналогично index.html) === */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      text-align: center;
+    }
+    .filmography-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--page-pad);
+    }
+    .log-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 5%;
+    }
+    .log-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .log-table colgroup col:nth-child(1) { width: 30%; }  /* Role */
+    .log-table colgroup col:nth-child(2) { width: 70%; }  /* Name */
+    .log-table th {
+      font-family: var(--serif);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-align: left;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(200,169,110,0.15);
+      color: var(--gold);
+      opacity: 0.65;
+    }
+    .log-table th:last-child { text-align: left; } /* выравнивание для второй колонки */
+    .log-table td {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(232,228,223,0.05);
+      vertical-align: middle;
+      color: var(--text-dim);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .log-table td:first-child {
+      color: var(--text);
+      padding-right: 1.5rem;
+    }
+    /* убираем эффект ссылок, так как таблица не кликабельна */
+    .crew-table tr:hover td {
+      font-size: 0.65rem; /* без увеличения */
+      background: transparent;
+    }
     @media (max-width: 768px) {
       :root { --page-pad: 5vw; }
       .fullbleed img { height: 60vw; }
       .hero { height: 80vh; }
       .footer { flex-direction: column; gap: 2rem; text-align: center; }
+      .log-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .log-table td {
+        font-size: 0.55rem;
+        white-space: normal;
+        word-break: break-word;
+      }
+      .log-table td:first-child {
+        padding-right: 0.8rem;
+      }
     }
+
+/* Центрированная таблица Crew шириной 800px */
+.crew-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+  box-sizing: border-box;
+}
+
+/* На маленьких экранах таблица будет занимать всю доступную ширину, но не более 800px */
+@media (max-width: 820px) {
+  .crew-container {
+    padding: 0 calc(var(--page-pad) / 2);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -87,7 +177,7 @@
   <img src="images/Architector_02.png" alt="After The City">
   <div class="hero__info">
     <h1 class="hero__title">After The City</h1>
-    <p class="hero__meta">Directed By Igor Makarov </p>
+    <p class="hero__meta">Directed By Igor Makarov</p>
   </div>
 </section>
 
@@ -100,6 +190,8 @@
   </div>
 </div>
 
+<div class="gap-l"></div>
+<div class="proj-photo contained"><img src="images/Architector_02.png" alt=""></div>
 <div class="gap-m"></div>
 <div class="proj-photo contained"><img src="images/Architector_03.png" alt=""></div>
 <div class="gap-m"></div>
@@ -116,14 +208,32 @@
 <div class="proj-photo contained"><img src="images/Architector_09.png" alt=""></div>
 <div class="gap-m"></div>
 
-<div class="proj-body"><p>Directed by Igor Makarov</p></div>
-    <div class="proj-body"><p>Produced by Amurskie Volny</p></div>
-    <div class="proj-body"><p>Line producer: Marina Sagamanyan</p></div>
-    <div class="proj-body"><p>Cinematography: Serge Borsuk, Fedor Gerlein</p></div>
-    <div class="proj-body"><p>1-st assist: Anatoly Takhchidi</p></div>
-    <div class="proj-body"><p>Sound: Ivan Erofeev, Nikita Alexeenko</p></div>
-  
+<!-- === НОВАЯ ТАБЛИЦА CREW (центрированная, ширина 800px) === -->
 <div class="gap-l"></div>
+<div class="section-label">Crew</div>
+<div class="gap-m"></div>
+<div class="crew-container">
+  <table class="log-table crew-table">
+    <colgroup>
+      <col style="width:60%">
+      <col style="width:40%">
+    </colgroup>
+    <thead>
+      <tr><th>Role</th><th>Name</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Director</td><td>Igor Makarov</td></tr>
+      <tr><td>General producer</td><td>Amurskie Volny</td></tr>
+      <tr><td>Line producer</td><td>Marina Sagamanyan</td></tr>
+      <tr><td>Cinematography</td><td>Serge Borsuk, Fedor Gerlein</td></tr>
+      <tr><td>1-st assist</td><td>Anatoly Takhchidi</td></tr>
+      <tr><td>Sound</td><td>Ivan Erofeev, Nikita Alexeenko</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="gap-l"></div>
+<!-- ===================== -->
+
 <div class="proj-video">
   <div class="vimeo-wrap">
     <iframe src="https://player.vimeo.com/video/819963771?h=78a4f43462" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
