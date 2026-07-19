@@ -396,7 +396,7 @@
   </div>
   <button class="stills-arrow stills-arrow--prev" id="stillsPrev">&#8592;</button>
   <button class="stills-arrow stills-arrow--next" id="stillsNext">&#8594;</button>
-  <span class="stills-counter"><span id="stillsCur">1</span> / 17</span>
+  <span class="stills-counter"><span id="stillsCur">1</span> / <span id="stillsTotal">17</span></span>
 </div>
 
 <!-- FILMS -->
@@ -548,7 +548,9 @@
 (function() {
   const track = document.getElementById('stillsTrack');
   const curEl = document.getElementById('stillsCur');
+  const totalEl = document.getElementById('stillsTotal');
   const total = track.children.length;
+  if (totalEl) totalEl.textContent = total;
   let cur = 0;
   function go(n) {
     cur = (n + total) % total;
@@ -631,8 +633,6 @@
   window.addEventListener('scroll', onScroll);
   window.addEventListener('resize', () => {
     updateNavVisibility();
-    // также перепроверяем sticky для stills при изменении ориентации
-    if (window.innerWidth <= 768) setupStickyStills();
   });
   updateNavVisibility();
 
