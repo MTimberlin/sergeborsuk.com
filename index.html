@@ -548,7 +548,7 @@
 (function() {
   const track = document.getElementById('stillsTrack');
   const curEl = document.getElementById('stillsCur');
-  const total = 12;
+  const total = track.children.length;
   let cur = 0;
   function go(n) {
     cur = (n + total) % total;
