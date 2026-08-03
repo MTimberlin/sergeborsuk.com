@@ -1,52 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
-    <loc>https://www.sergeborsuk.com/index.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.sergeborsuk.com/</loc>
   </url>
-
   <url>
-    <loc>https://www.sergeborsuk.com/about.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.sergeborsuk.com/about</loc>
   </url>
-
   <url>
-    <loc>https://www.sergeborsuk.com/after-the-city.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.sergeborsuk.com/after-the-city</loc>
   </url>
-
   <url>
-    <loc>https://www.sergeborsuk.com/girl-in-the-sands.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.sergeborsuk.com/girl-in-the-sands</loc>
   </url>
-
   <url>
-    <loc>https://www.sergeborsuk.com/marked-wings.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.sergeborsuk.com/marked-wings</loc>
   </url>
-
   <url>
-    <loc>https://www.sergeborsuk.com/bird-of-passage.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.sergeborsuk.com/bird-of-passage</loc>
   </url>
-
   <url>
-    <loc>https://www.sergeborsuk.com/buenos-aires-3d.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.sergeborsuk.com/buenos-aires-3d</loc>
   </url>
-
   <url>
-    <loc>https://www.sergeborsuk.com/africa.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.sergeborsuk.com/africa</loc>
   </url>
-
 </urlset>
